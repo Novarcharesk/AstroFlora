@@ -8,34 +8,52 @@ public class FlowerSpawner : MonoBehaviour
     public Transform[] spawners; // Array of spawner Transforms on the planet
 
     public float initialSpawnDelay = 2f; // Initial delay before the first flower spawns
-    public float spawnInterval = 5f; // Time interval between flower spawns
-    public float minSpawnInterval = 1f; // Minimum time interval between spawns
+    public float maxSpawnInterval = 10f; // Maximum time interval between flower spawns
     public float spawnIntervalDecreaseRate = 0.1f; // Rate at which spawn interval decreases
+
+    private float currentSpawnInterval; // Current time interval between spawns
+
+    private int spawnerIndex; // Index to keep track of the selected spawner
 
     private void Start()
     {
         // Initialize variables and setup logic here
-        InvokeRepeating("SpawnFlower", initialSpawnDelay, spawnInterval);
+        currentSpawnInterval = maxSpawnInterval;
+        spawnerIndex = 0;
+
+        // Start spawning flowers
+        StartCoroutine(SpawnFlowers());
     }
 
-    private void SpawnFlower()
+    private IEnumerator SpawnFlowers()
     {
-        // Choose a random spawner from the array
-        int randomSpawnerIndex = Random.Range(0, spawners.Length);
-        Transform selectedSpawner = spawners[randomSpawnerIndex].transform;
+        // Wait for the initial spawn delay
+        yield return new WaitForSeconds(initialSpawnDelay);
 
-        // Check if there's already a flower at this spawner
-        if (selectedSpawner.childCount == 0)
+        while (true)
         {
-            // Choose a random flower prefab from the array
-            int randomFlowerIndex = Random.Range(0, flowerPrefabs.Length);
-            GameObject selectedFlowerPrefab = flowerPrefabs[randomFlowerIndex];
+            // Get the current spawner
+            Transform selectedSpawner = spawners[spawnerIndex];
 
-            // Instantiate the selected flower prefab at the selected spawner's position
-            Instantiate(selectedFlowerPrefab, selectedSpawner.position, Quaternion.identity);
+            // Try to spawn a flower if the spawner is available
+            if (selectedSpawner.childCount == 0)
+            {
+                // Choose a random flower prefab from the array
+                int randomFlowerIndex = Random.Range(0, flowerPrefabs.Length);
+                GameObject selectedFlowerPrefab = flowerPrefabs[randomFlowerIndex];
 
-            // Decrease the spawn interval over time to increase frequency
-            spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - spawnIntervalDecreaseRate);
+                // Instantiate the selected flower prefab at the selected spawner's position
+                Instantiate(selectedFlowerPrefab, selectedSpawner.position, Quaternion.identity);
+
+                // Move to the next spawner
+                spawnerIndex = (spawnerIndex + 1) % spawners.Length;
+            }
+
+            // Decrease the current spawn interval to increase frequency
+            currentSpawnInterval = Mathf.Max(maxSpawnInterval, currentSpawnInterval - spawnIntervalDecreaseRate);
+
+            // Wait for the current spawn interval before spawning the next flower
+            yield return new WaitForSeconds(currentSpawnInterval);
         }
     }
 }

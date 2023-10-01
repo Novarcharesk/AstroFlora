@@ -11,10 +11,13 @@ public class Flower : MonoBehaviour
     // Variable to track whether the flower has been collected
     private bool isCollected = false;
 
+    private float despawnTimer; // Timer to track despawn time
+
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize any necessary values here
+        // Initialize the despawn timer
+        despawnTimer = timeToDespawn;
     }
 
     // Update is called once per frame
@@ -22,6 +25,16 @@ public class Flower : MonoBehaviour
     {
         // Implement any flower-related behaviors here (if needed)
         // You can add any custom behavior or effects here
+
+        // Check if the flower should be despawned based on the timer
+        if (!isCollected)
+        {
+            despawnTimer -= Time.deltaTime;
+            if (despawnTimer <= 0)
+            {
+                Despawn();
+            }
+        }
     }
 
     public void Collect()
