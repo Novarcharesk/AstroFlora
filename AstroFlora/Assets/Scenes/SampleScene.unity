@@ -203,10 +203,13 @@ MonoBehaviour:
   flowerPrefabs:
   - {fileID: 5143720659745667455, guid: 5933ffdf01b775c4c9b548bd2abad173, type: 3}
   - {fileID: 7368411294781122594, guid: ddbe62265163acb4685fa0d62b8f9909, type: 3}
-  - {fileID: 0}
   spawners:
   - {fileID: 111030093}
   - {fileID: 2114843760}
+  initialSpawnDelay: 2
+  spawnInterval: 5
+  minSpawnInterval: 1
+  spawnIntervalDecreaseRate: 0.1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

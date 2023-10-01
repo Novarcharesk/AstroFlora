@@ -52,8 +52,6 @@ MonoBehaviour:
   currentSaturation: 0
   timeToDespawn: 10
   planet: {fileID: 0}
-  flowerPrefabs: []
-  uiSlot: {fileID: 0}
 --- !u!33 &8900838642332019808
 MeshFilter:
   m_ObjectHideFlags: 0
