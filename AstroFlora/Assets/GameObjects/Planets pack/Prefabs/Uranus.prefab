@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7990246452690557457}
   - component: {fileID: 7990246452689590481}
   - component: {fileID: 7990246452696757713}
+  - component: {fileID: -1000168274856917089}
   m_Layer: 0
   m_Name: Uranus
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-1000168274856917089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7990246452687390225}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8581183, y: 1.8488069, z: 0.91359556}
+  m_Center: {x: -0.006803125, y: -0.0011099875, z: 0.00031079352}

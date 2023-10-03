@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7268728126367066045}
   - component: {fileID: 7268728126365934973}
   - component: {fileID: 7268728126356408445}
+  - component: {fileID: -157700947603281079}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-157700947603281079
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7268728126363679677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.85702986, y: 0.87469107, z: 0.86570066}
+  m_Center: {x: 0.00000014901161, y: 0, z: 0.00000002980233}

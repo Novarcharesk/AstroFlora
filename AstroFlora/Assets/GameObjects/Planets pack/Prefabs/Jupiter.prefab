@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1526506274068473077}
   - component: {fileID: 1526506274069472821}
   - component: {fileID: 1526506274079050549}
+  - component: {fileID: 164625026958809979}
   m_Layer: 0
   m_Name: Jupiter
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &164625026958809979
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526506274071673077}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.89433086, y: 0.8918369, z: 0.8983129}
+  m_Center: {x: 0.0032370985, y: 0.00000029802328, z: -0.0019516652}

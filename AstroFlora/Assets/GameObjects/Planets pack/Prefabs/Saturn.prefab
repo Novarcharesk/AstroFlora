@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1611183985826677561}
   - component: {fileID: 1611183985825546745}
   - component: {fileID: 1611183985816104185}
+  - component: {fileID: 9120951288458364390}
   m_Layer: 0
   m_Name: Saturn
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &9120951288458364390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611183985823358777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9247248, y: 1.9330063, z: 0.95974874}
+  m_Center: {x: -0.00057950616, y: 0.0013556484, z: -0.004146085}

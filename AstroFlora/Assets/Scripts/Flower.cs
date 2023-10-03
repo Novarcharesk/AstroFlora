@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Flower : MonoBehaviour
@@ -13,19 +15,14 @@ public class Flower : MonoBehaviour
 
     private float despawnTimer; // Timer to track despawn time
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         // Initialize the despawn timer
         despawnTimer = timeToDespawn;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Implement any flower-related behaviors here (if needed)
-        // You can add any custom behavior or effects here
-
         // Check if the flower should be despawned based on the timer
         if (!isCollected)
         {
@@ -33,6 +30,29 @@ public class Flower : MonoBehaviour
             if (despawnTimer <= 0)
             {
                 Despawn();
+            }
+        }
+
+        // Debug log before raycasting
+        Debug.Log("Checking for click...");
+
+        // Check for mouse click
+        if (!isCollected && Input.GetMouseButtonDown(0)) // Assuming left mouse button (0) is used for interaction
+        {
+            // Raycast from the mouse position to detect if the flower is clicked
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    // Debug log when the flower is clicked
+                    Debug.Log("Flower clicked!");
+
+                    // Call the Collect method
+                    Collect();
+                }
             }
         }
     }
@@ -46,6 +66,9 @@ public class Flower : MonoBehaviour
 
             // Deactivate or destroy the flower (you can choose which option to use)
             gameObject.SetActive(false); // Deactivate the flower
+
+            // Add the collected flower to the player's inventory
+            InventoryManager.Instance.AddToInventory(gameObject);
 
             // You may need to adjust other behaviors related to flower collection
         }

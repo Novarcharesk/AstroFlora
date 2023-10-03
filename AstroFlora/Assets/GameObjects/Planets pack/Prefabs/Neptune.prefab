@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9028136362282299080}
   - component: {fileID: 9028136362281200648}
   - component: {fileID: 9028136362275832072}
+  - component: {fileID: 3034124835385810983}
   m_Layer: 0
   m_Name: Neptune
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &3034124835385810983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028136362283135688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9030162, y: 0.90453947, z: 0.9043847}
+  m_Center: {x: 0.000008389354, y: -0.0034975568, z: 0}
