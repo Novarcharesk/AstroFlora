@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75024581360003406}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 13.013, y: 0.455, z: -7.013}
   m_LocalScale: {x: 0.054123532, y: 0.054123532, z: 0.054123532}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3773719919776167293
 MonoBehaviour:
@@ -50,6 +50,7 @@ MonoBehaviour:
   destinationPlanetPrefab: {fileID: 0}
   timeToDespawn: 10
   planet: {fileID: 0}
+  inventoryIcon: {fileID: 21300000, guid: 9ed603ffb95c69a4ba682372fa1d669a, type: 3}
 --- !u!33 &4462646445494631505
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,8 +109,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75024581360003406}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.76531494, y: 0.60514385, z: 0.7948613}
   m_Center: {x: 0.018689485, y: 0.30775324, z: 0.0012279303}

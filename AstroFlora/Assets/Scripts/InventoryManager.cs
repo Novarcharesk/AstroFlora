@@ -6,7 +6,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance; // Singleton instance
 
-    private List<GameObject> inventory = new List<GameObject>(); // List to store collected flowers
+    public List<GameObject> inventory = new List<GameObject>(); // List to store collected flowers
+
+    private FlowerCollection flowerCollection; // Reference to the FlowerCollection script for UI updates
 
     private void Awake()
     {
@@ -18,6 +20,9 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(gameObject); // Ensure there's only one instance of InventoryManager
         }
+
+        // Get a reference to the FlowerCollection script
+        flowerCollection = GetComponent<FlowerCollection>();
     }
 
     public void AddToInventory(GameObject collectedFlower)
@@ -25,7 +30,11 @@ public class InventoryManager : MonoBehaviour
         // Add the collected flower to the inventory
         inventory.Add(collectedFlower);
 
-        // You can update the UI to display the collected flowers in the player's inventory here
+        // Debug log to check if the flower is being added to the inventory
+        Debug.Log("Added to inventory: " + collectedFlower.name);
+
+        // Notify the FlowerCollection script to update the UI
+        flowerCollection.UpdateUI();
     }
 
     // You can add more methods for managing the inventory, such as displaying it, using items, etc.

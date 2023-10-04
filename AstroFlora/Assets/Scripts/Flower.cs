@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Flower : MonoBehaviour
 {
-    public GameObject destinationPlanetPrefab; // Reference to the destination planet prefab
     public float timeToDespawn = 10.0f; // Time in seconds before the flower despawns
-    public GameObject planet; // Reference to the planet where this flower resides
+    public Sprite inventoryIcon;
+
+    private GameObject destinationPlanet; // Reference to the destination planet for this flower
 
     // Variable to track whether the flower has been collected
     private bool isCollected = false;
@@ -19,6 +19,9 @@ public class Flower : MonoBehaviour
     {
         // Initialize the despawn timer
         despawnTimer = timeToDespawn;
+
+        // Assign a random destination planet when the flower spawns
+        AssignRandomDestinationPlanet();
     }
 
     private void Update()
@@ -33,9 +36,6 @@ public class Flower : MonoBehaviour
             }
         }
 
-        // Debug log before raycasting
-        Debug.Log("Checking for click...");
-
         // Check for mouse click
         if (!isCollected && Input.GetMouseButtonDown(0)) // Assuming left mouse button (0) is used for interaction
         {
@@ -47,14 +47,34 @@ public class Flower : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    // Debug log when the flower is clicked
-                    Debug.Log("Flower clicked!");
-
                     // Call the Collect method
                     Collect();
                 }
             }
         }
+    }
+
+    private void AssignRandomDestinationPlanet()
+    {
+        // Get a reference to the FlowerCollection script
+        FlowerCollection flowerCollection = FindObjectOfType<FlowerCollection>();
+
+        if (flowerCollection != null && flowerCollection.destinationPlanets != null && flowerCollection.destinationPlanets.Length > 0)
+        {
+            // Randomly select a destination planet from the FlowerCollection script
+            int randomIndex = Random.Range(0, flowerCollection.destinationPlanets.Length);
+            destinationPlanet = flowerCollection.destinationPlanets[randomIndex];
+
+            // Set the destination planet for this flower
+            SetDestinationPlanet(destinationPlanet);
+        }
+    }
+
+    public void SetDestinationPlanet(GameObject destinationPlanet)
+    {
+        // Implement logic to set the destination planet for this flower
+        // You can use this method to set the flower's destination planet.
+        // This might involve changing the flower's appearance, color, or some other indication.
     }
 
     public void Collect()
@@ -64,11 +84,14 @@ public class Flower : MonoBehaviour
         {
             isCollected = true;
 
-            // Deactivate or destroy the flower (you can choose which option to use)
-            gameObject.SetActive(false); // Deactivate the flower
+            // Deactivate the flower
+            gameObject.SetActive(false);
 
             // Add the collected flower to the player's inventory
             InventoryManager.Instance.AddToInventory(gameObject);
+
+            // Debug log to check if the flower is being collected
+            Debug.Log("Flower collected: " + gameObject.name);
 
             // You may need to adjust other behaviors related to flower collection
         }
