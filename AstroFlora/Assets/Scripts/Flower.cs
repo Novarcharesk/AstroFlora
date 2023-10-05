@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Flower : MonoBehaviour
 {
+    public GameObject destinationPlanetPrefab; // Reference to the destination planet prefab
     public float timeToDespawn = 10.0f; // Time in seconds before the flower despawns
     public Sprite inventoryIcon;
-
-    private GameObject destinationPlanet; // Reference to the destination planet for this flower
+    public string currentPlanet; // Track the current planet
 
     // Variable to track whether the flower has been collected
     private bool isCollected = false;
@@ -19,9 +18,6 @@ public class Flower : MonoBehaviour
     {
         // Initialize the despawn timer
         despawnTimer = timeToDespawn;
-
-        // Assign a random destination planet when the flower spawns
-        AssignRandomDestinationPlanet();
     }
 
     private void Update()
@@ -52,29 +48,6 @@ public class Flower : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void AssignRandomDestinationPlanet()
-    {
-        // Get a reference to the FlowerCollection script
-        FlowerCollection flowerCollection = FindObjectOfType<FlowerCollection>();
-
-        if (flowerCollection != null && flowerCollection.destinationPlanets != null && flowerCollection.destinationPlanets.Length > 0)
-        {
-            // Randomly select a destination planet from the FlowerCollection script
-            int randomIndex = Random.Range(0, flowerCollection.destinationPlanets.Length);
-            destinationPlanet = flowerCollection.destinationPlanets[randomIndex];
-
-            // Set the destination planet for this flower
-            SetDestinationPlanet(destinationPlanet);
-        }
-    }
-
-    public void SetDestinationPlanet(GameObject destinationPlanet)
-    {
-        // Implement logic to set the destination planet for this flower
-        // You can use this method to set the flower's destination planet.
-        // This might involve changing the flower's appearance, color, or some other indication.
     }
 
     public void Collect()

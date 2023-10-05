@@ -47,18 +47,19 @@ public class FlowerCollection : MonoBehaviour
     {
         // Debug log to check if the UI is being updated
         Debug.Log("UI updated");
+
+        // Get the collected flowers from the InventoryManager
         collectedFlowers = InventoryManager.Instance.inventory;
+
         // Update the UI slots with the collected flower prefabs
-        for (int i = 0; i < collectedFlowers.Count; i++)
+        for (int i = 0; i < collectedFlowers.Count && i < flowerSlots.Length; i++)
         {
-            // You can access the collectedFlowers[i] to display or manipulate it as needed in your UI.
-            // You may need to modify your UI slot prefabs to accommodate the flower prefabs.
-            //Vector3 iconPosition = flowerSlots[i].gameObject.transform.position;
-            //Vector3 worldIconPosition = Camera.main.ScreenToWorldPoint(iconPosition);
-            //Debug.Log("will spawn " + collectedFlowers[i] + " at " + worldIconPosition);
-            //Instantiate(objectToInstantiateDebug, worldIconPosition, Quaternion.identity);
-            inventoryImages[i].enabled = true;
-            inventoryImages[i].sprite = collectedFlowers[i].GetComponent<Flower>().inventoryIcon;
+            // Enable the slot's image component
+            Image slotImage = flowerSlots[i].GetComponentInChildren<Image>();
+            slotImage.enabled = true;
+
+            // Set the sprite of the slot's image to match the collected flower
+            slotImage.sprite = collectedFlowers[i].GetComponent<Flower>().inventoryIcon;
         }
     }
 
