@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f1ccd5b6021234e91100c3c7287504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationPlanetPrefab: {fileID: 0}
+  destinationPlanetPrefab: {fileID: 3668398979394644596, guid: 035306f61d30cec478039fb39067be1e,
+    type: 3}
   timeToDespawn: 10
+  planet: {fileID: 0}
   inventoryIcon: {fileID: 21300000, guid: e109c7dc7a40f6342b28dbfcfa0cd47a, type: 3}
-  currentPlanet: 
 --- !u!33 &6531855746208431421
 MeshFilter:
   m_ObjectHideFlags: 0

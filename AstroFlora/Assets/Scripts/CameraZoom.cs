@@ -15,8 +15,7 @@ public class CameraZoom : MonoBehaviour
 
     private bool isMoving = false;
 
-    private float positionCheckInterval = 1.0f; // Interval for checking player's position
-    private float positionCheckTimer = 0.0f; // Timer for position checking
+    private bool isAtPlanet = false; // Flag to track if the player is at a planet
 
     private void Start()
     {
@@ -24,8 +23,18 @@ public class CameraZoom : MonoBehaviour
         defaultPosition = transform.localPosition;
         defaultRotation = transform.localRotation;
 
-        // Initialize the position check timer
-        positionCheckTimer = positionCheckInterval;
+        // The player starts at a planet
+        isAtPlanet = true;
+
+        // Debug log to indicate the player's position
+        Debug.Log("Player is at a planet.");
+    }
+
+    private bool IsPlayerAtPlanet()
+    {
+        // You can implement your logic here to determine if the player is at a planet.
+        // For simplicity, you can check if the player's current position is equal to the default position.
+        return !isMoving;
     }
 
     private void Update()
@@ -40,25 +49,24 @@ public class CameraZoom : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Mars"))
                 {
-                    // Set the target position and rotation for the Mars planet
-                    SetTargetPositionAndRotation(new Vector3(7.59f, 0.98f, -7.58f), Quaternion.Euler(0, 48.911f, 0));
+                    // Check if the player can interact with the flower on Mars
+                    if (isAtPlanet)
+                    {
+                        // Set the target position and rotation for the Mars planet
+                        SetTargetPositionAndRotation(new Vector3(7.59f, 0.98f, -7.58f), Quaternion.Euler(0, 48.911f, 0));
+                    }
                 }
                 else if (hit.collider.CompareTag("Jupiter"))
                 {
-                    // Set the target position and rotation for the Jupiter planet
-                    SetTargetPositionAndRotation(new Vector3(13.28f, 1.14f, -7.58f), Quaternion.Euler(7.428f, -46.232f, -2.173f));
+                    // Check if the player can interact with the flower on Jupiter
+                    if (isAtPlanet)
+                    {
+                        // Set the target position and rotation for the Jupiter planet
+                        SetTargetPositionAndRotation(new Vector3(13.28f, 1.14f, -7.58f), Quaternion.Euler(7.428f, -46.232f, -2.173f));
+                    }
                 }
                 // Add more conditions for other planets as needed
             }
-        }
-
-        // Update the position check timer
-        positionCheckTimer -= Time.deltaTime;
-        if (positionCheckTimer <= 0)
-        {
-            // Check player's position
-            CheckPlayerPosition();
-            positionCheckTimer = positionCheckInterval;
         }
     }
 
@@ -74,19 +82,6 @@ public class CameraZoom : MonoBehaviour
     public void MoveToDefaultPosition()
     {
         SetTargetPositionAndRotation(defaultPosition, defaultRotation);
-    }
-
-    private void CheckPlayerPosition()
-    {
-        // Check if the player is at the default position or a planet
-        if (Vector3.Distance(transform.localPosition, defaultPosition) < 0.1f)
-        {
-            Debug.Log("Player is at the default position");
-        }
-        else
-        {
-            Debug.Log("Player is at a planet");
-        }
     }
 
     IEnumerator InterpolateCamera()
@@ -112,5 +107,18 @@ public class CameraZoom : MonoBehaviour
         transform.localRotation = targetRotation;
 
         isMoving = false;
+
+        // Update the player's position status
+        isAtPlanet = !isMoving;
+
+        // Debug log to indicate the player's position
+        if (isAtPlanet)
+        {
+            Debug.Log("Player is at a planet.");
+        }
+        else
+        {
+            Debug.Log("Player is in the default position.");
+        }
     }
 }
