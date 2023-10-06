@@ -7,6 +7,7 @@ public class Flower : MonoBehaviour
 {
     public float timeToDespawn = 10.0f; // Time in seconds before the flower despawns
     public Sprite inventoryIcon;
+    public bool flowerForJupiter = false;
 
     private GameObject destinationPlanet; // Reference to the destination planet for this flower
 

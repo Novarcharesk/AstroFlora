@@ -93,9 +93,13 @@ public class CameraZoom : MonoBehaviour
         {
             Debug.Log("Player is at the default position.");
         }
+        else if (targetPosition.x > 10)
+        {
+            Debug.Log("Player is at Jupiter");
+        }
         else
         {
-            Debug.Log("Player is at a planet.");
+            Debug.Log("Player is at Mars");
         }
     }
 }

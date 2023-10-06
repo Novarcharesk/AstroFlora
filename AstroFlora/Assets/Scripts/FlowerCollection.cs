@@ -62,6 +62,11 @@ public class FlowerCollection : MonoBehaviour
         }
     }
 
+    public void RemoveViaIndex(int i)
+    {
+        inventoryImages[i].enabled = false;
+    }
+
     public void AddCollectedFlower(GameObject collectedFlowerPrefab, string flowerName)
     {
         collectedFlowerList.Add(new CollectedFlowerInfo { collectedFlowerPrefab = collectedFlowerPrefab, flowerName = flowerName });
